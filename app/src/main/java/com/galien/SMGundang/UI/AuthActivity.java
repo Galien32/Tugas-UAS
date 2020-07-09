@@ -21,7 +21,7 @@ public class AuthActivity extends AppCompatActivity {
         setContentView(R.layout.activity_auth);
 
         getSupportFragmentManager().beginTransaction()
-                .replace(R.id.auth_view, registerFragment)
+                .replace(R.id.auth_view, new LoginFragment())
                 .addToBackStack(null)
                 .commit();
     }
