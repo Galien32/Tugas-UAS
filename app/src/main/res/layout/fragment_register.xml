@@ -57,12 +57,13 @@
                     android:id="@+id/reg_email"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:hint="email" />
+                    android:hint="Email" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                app:passwordToggleEnabled="true"
                 android:layout_marginVertical="10dp">
 
                 <com.google.android.material.textfield.TextInputEditText
@@ -74,16 +75,30 @@
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.button.MaterialButton
+                android:id="@+id/reg_btn_create"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Create new account"
                 android:background="@color/colorPrimary"
                 android:textColor="#ffff"
                 android:textStyle="bold"
-                android:layout_marginBottom="15dp"
+                android:layout_marginBottom="2dp"
                 android:layout_marginHorizontal="5dp"/>
+            
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="60dp" >
+                <TextView
+                    android:id="@+id/already_have_account"
+                    android:layout_gravity="center"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="18dp"
+                    android:textColor="@color/colorPrimaryDark"
+                    android:text="Already have Account!"/>
+            </FrameLayout>
         </LinearLayout>
-
+        
     </com.google.android.material.card.MaterialCardView>
 
 
