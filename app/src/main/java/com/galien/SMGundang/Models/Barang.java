@@ -5,6 +5,12 @@ public class Barang {
     private String id;
     private int stock;
 
+    public Barang(String name, String id, int stock) {
+        this.name = name;
+        this.id = id;
+        this.stock = stock;
+    }
+
     public String getName() {
         return name;
     }
