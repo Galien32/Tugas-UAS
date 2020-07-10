@@ -95,17 +95,40 @@ public class ListBarangFragment extends Fragment {
                 });
     }
 
+    private void deleteItem(String key, final int pos) {
+        Toast.makeText(getContext(), "Please wait!", Toast.LENGTH_SHORT).show();
+        db.collection("barang")
+                .document(key)
+                .delete()
+                .addOnCompleteListener(new OnCompleteListener<Void>() {
+                    @Override
+                    public void onComplete(@NonNull Task<Void> task) {
+                        if (task.isSuccessful()) {
+                            listBarang.remove(pos);
+                            Toast.makeText(getContext(), "Delete Success", Toast.LENGTH_SHORT).show();
+                            reloadListView();
+                        } else {
+                            Toast.makeText(getContext(), "Deleting fail, check your internet!", Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                });
+    }
+
     private void createListView(List<Barang> ls) {
         adapter = new BarangAdapter(ls);
         adapter.setOnItemChildClickListener(new OnItemChildClickListener() {
             @Override
             public void onItemChildClick(@NonNull BaseQuickAdapter adapter, @NonNull View view, int position) {
-                Toast.makeText(getContext(), "doc key: "+listKey.get(position), Toast.LENGTH_SHORT).show();
+                deleteItem(listKey.get(position), position);
+//                Toast.makeText(getContext(), "doc key: "+listKey.get(position), Toast.LENGTH_SHORT).show();
             }
         });
+        reloadListView();
+    }
+
+    private void reloadListView() {
         rvBarang.setAdapter(adapter);
         rvBarang.setLayoutManager(new LinearLayoutManager(getContext()));
-
         btnFormAdd.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
